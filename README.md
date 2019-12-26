@@ -1,7 +1,9 @@
 # Multiplatform sample
-This example shows how to use Kotlin/Native in the multiplatform world.
+This example shows you how to use Kotlin Multiplatform in an monorepo.
+The MPP code can be found inside the [greeting/](greeting/) directory while
+the "UI" implementations can be found inside the [androidApp/](androidApp/) resp. [iosApp/](iosApp/) dir.
 
-This sample based on the [multiplatform documentation](https://github.com/h0tk3y/k-new-mpp-samples/blob/master/README.md).
+This sample based on the [multiplatform documentation](http://kotlinlang.org/docs/reference/building-mpp-with-gradle.html).
 If you have questions about the structure or how it works take a look at the documentation there.
 
 ## iOS
@@ -9,23 +11,29 @@ If you have questions about the structure or how it works take a look at the doc
 To compile the project from Xcode just open `iosApp/iosApp.xcodeproj` and run the application.
 The [swift tests](iosApp/iosAppTests/iosAppTests.swift) also can be executed from Xcode.
 
-To compile a framework from the command line execute:
+To compile a framework for ios simulator from the command line execute:
 
 ```
   > ./gradlew :greeting:build
+```
+
+To compile the framework for a device use the `device` project property:
+
+```
+  > ./gradlew :greeting:build -Pdevice=true
 ```
 
 To run kotlin tests (including the [common ones](greeting/src/commonTest/kotlin/CalculatorTest.kt))
 on an iOS simulator execute:
 
 ```
-  > ./gradlew :greeting:iosSimTest
+  > ./gradlew :greeting:iosTest
 ```
 
 By default the `iPhone 8` simulator is used. One can change this setting using the `iosDevice` project property:
 
 ```
-  > ./gradlew :greeting:iosSimTest -PiosDevice='iPhone 7'
+  > ./gradlew :greeting:iosTest -PiosDevice='iPhone 7'
 ```
 
 
